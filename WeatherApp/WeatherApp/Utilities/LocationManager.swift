@@ -14,4 +14,16 @@ final class LocationManager {
     func requestAuthorization() {
         locationManger.requestWhenInUseAuthorization()
     }
+    
+    func checkLocationAuthorization() {
+        switch locationManger.authorizationStatus {
+        case .notDetermined, .denied:
+            //TODO: - error 처리 필요
+            return
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManger.startUpdatingLocation()
+        default:
+            return
+        }
+    }
 }
