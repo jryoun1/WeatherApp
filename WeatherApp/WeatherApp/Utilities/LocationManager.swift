@@ -10,6 +10,7 @@ import CoreLocation
 
 final class LocationManager {
     let locationManger = CLLocationManager()
+    var currentAddress: String?
     
     func requestAuthorization() {
         locationManger.requestWhenInUseAuthorization()
@@ -24,6 +25,27 @@ final class LocationManager {
             locationManger.startUpdatingLocation()
         default:
             return
+        }
+    }
+    
+    func convertCoordinateToAddress() {
+        if let lastLocation = self.locationManger.location {
+            let geoCoder = CLGeocoder()
+            geoCoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) -> Void in
+                guard let error = error else {
+                    //TODO: error 처리 필요
+                    return
+                }
+                
+                guard let placemark = placemarks?.first,
+                      let administrativeArea = placemark.administrativeArea,
+                      let locality = placemark.locality else {
+                    //TODO: error 처리 필요
+                    return
+                }
+                
+                self.currentAddress = "\(administrativeArea) \(locality)"
+            }
         }
     }
 }
