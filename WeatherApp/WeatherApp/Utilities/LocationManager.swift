@@ -10,4 +10,8 @@ import CoreLocation
 
 final class LocationManager {
     let locationManger = CLLocationManager()
+    
+    func requestAuthorization() {
+        locationManger.requestWhenInUseAuthorization()
+    }
 }
