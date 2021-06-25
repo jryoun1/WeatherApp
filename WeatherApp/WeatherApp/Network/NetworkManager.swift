@@ -6,9 +6,20 @@
 //
 
 import UIKit
+import CoreLocation
 
 struct NetworkManager {
     typealias resultHandler = (Result<Data?, Error>) -> Void
+    
+    func loadData(locationCoordinate: CLLocationCoordinate2D, api: WeatherAPI, completion: @escaping resultHandler) {
+        guard let url = ConfigURL.getWeatherURLWith(locationCoordinate: locationCoordinate, api: api) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        communicateToServer(with: request, completion: completion)
+    }
     
     private func communicateToServer(with request: URLRequest, completion: @escaping resultHandler) {
             let session: URLSession = URLSession.shared
