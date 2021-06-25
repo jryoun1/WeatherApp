@@ -7,5 +7,13 @@
 import Foundation
 
 enum WeatherError: Error {
-
+    case failGetAuthorization
+    case failTransportData
+    case failGetData
+    case failGetImage
+    case failDecode
+    case failMakeURL
+    case failGetLocation
+    case failGetAddress
+    case unknown
 }
