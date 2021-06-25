@@ -21,6 +21,16 @@ struct NetworkManager {
         communicateToServer(with: request, completion: completion)
     }
     
+    func loadImage(imageID: String, completion: @escaping resultHandler) {
+        guard let url = ConfigURL.getWeatherImageURLWith(imageID: imageID) else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        communicateToServer(with: request, completion: completion)
+    }
+    
     private func communicateToServer(with request: URLRequest, completion: @escaping resultHandler) {
             let session: URLSession = URLSession.shared
             let dataTask: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
