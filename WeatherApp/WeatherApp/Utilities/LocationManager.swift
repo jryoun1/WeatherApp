@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 
 final class LocationManager {
+    public typealias resultHandler = (Result<[CLPlacemark]?, WeatherError>) -> Void
     let locationManger = CLLocationManager()
     var currentAddress: String?
     
