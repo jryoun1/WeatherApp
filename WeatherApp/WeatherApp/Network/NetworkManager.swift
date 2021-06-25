@@ -9,7 +9,7 @@ import UIKit
 import CoreLocation
 
 struct NetworkManager {
-    typealias resultHandler = (Result<Data?, Error>) -> Void
+    typealias resultHandler = (Result<Data?, WeatherError>) -> Void
     
     func loadData(locationCoordinate: CLLocationCoordinate2D, api: WeatherAPI, completion: @escaping resultHandler) {
         guard let url = ConfigURL.getWeatherURLWith(locationCoordinate: locationCoordinate, api: api) else {
