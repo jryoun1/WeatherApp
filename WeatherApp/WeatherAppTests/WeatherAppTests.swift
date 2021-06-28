@@ -6,27 +6,22 @@
 //
 
 import XCTest
+import CoreLocation
+@testable import WeatherApp
 
-class WeatherAppTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+final class WeatherAppTests: XCTestCase {
+    private var sutLocationManager: LocationManager!
+    private var sutNetworkManager: NetworkManager!
+    
+    override func setUp() {
+        sutLocationManager = LocationManager()
+        sutNetworkManager = NetworkManager()
+        super.setUp()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        sutLocationManager = nil
+        sutNetworkManager = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
