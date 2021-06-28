@@ -147,6 +147,57 @@ final class WeatherAppTests: XCTestCase {
         XCTAssertEqual(count, 40)
     }
     
+    func testGetImage() {
+        // 1.given
+        let expectationForGetImageName = XCTestExpectation(description: "APITaskExpectation")
+        let expectationForGetImage = XCTestExpectation(description: "APITaskExpectation")
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        var currentWeather: CurrentWeather?
+        var image: UIImage?
+        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
+            return
+        }
+        
+        sutNetworkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                do {
+                    currentWeather = try jsonDecoder.decode(CurrentWeather.self, from: data)
+                    expectationForGetImageName.fulfill()
+                } catch {
+                    print(error)
+                }
+            case .failure(_):
+                return
+            }
+        }
+        wait(for: [expectationForGetImageName], timeout: 5.0)
+        guard let iconName = currentWeather?.weather[0].icon else {
+            return
+        }
+        
+        // 2.when
+        sutNetworkManager.loadImage(imageID: iconName) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                image = UIImage(data: data)
+                expectationForGetImage.fulfill()
+            case .failure(_):
+                return
+            }
+        }
+        wait(for: [expectationForGetImage], timeout: 5.0)
+        
+        // 3.then
+        XCTAssertNotNil(image)
+    }
+    
     override func tearDown() {
         sutLocationManager = nil
         sutNetworkManager = nil
