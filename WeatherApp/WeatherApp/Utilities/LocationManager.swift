@@ -40,24 +40,24 @@ final class LocationManager {
         return currentLocation
     }
     
-    func convertCoordinateToAddress() {
-        if let lastLocation = self.locationManger.location {
-            let geoCoder = CLGeocoder()
-            geoCoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) -> Void in
-                guard let error = error else {
-                    //TODO: error 처리 필요
-                    return
-                }
-                
-                guard let placemark = placemarks?.first,
-                      let administrativeArea = placemark.administrativeArea,
-                      let locality = placemark.locality else {
-                    //TODO: error 처리 필요
-                    return
-                }
-                
-                self.currentAddress = "\(administrativeArea) \(locality)"
+    func convertLocationToAddress(location: CLLocation) -> String? {
+        let geoCoder = CLGeocoder()
+        var currentAddress: String?
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+            if let _ = error {
+                currentAddress = nil
+                return
             }
+            
+            guard let placemark = placemarks?.first,
+                  let administrativeArea = placemark.administrativeArea,
+                  let locality = placemark.locality else {
+                currentAddress = nil
+                return
+            }
+            
+            currentAddress = "\(administrativeArea) \(locality)"
         }
+        return currentAddress
     }
 }
