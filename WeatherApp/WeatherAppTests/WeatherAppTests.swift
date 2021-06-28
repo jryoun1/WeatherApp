@@ -34,6 +34,30 @@ final class WeatherAppTests: XCTestCase {
         XCTAssertEqual(current.coordinate.longitude, -122.406417)
     }
     
+    func testGetAddress() {
+        // 1.given
+        let expectation = XCTestExpectation(description: "geoCoderTaskExpectation")
+        var currentAddress: String?
+        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
+            return
+        }
+        
+        // 2.when
+        sutLocationManager.convertLocationToAddress(location: currentLocation) { result in
+            switch result {
+            case .success(let address):
+                currentAddress = address
+                expectation.fulfill()
+            case .failure(_):
+                return
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
+        
+        // 3.then
+        XCTAssertEqual(currentAddress, "CA San Francisco")
+    }
+    
     override func tearDown() {
         sutLocationManager = nil
         sutNetworkManager = nil
