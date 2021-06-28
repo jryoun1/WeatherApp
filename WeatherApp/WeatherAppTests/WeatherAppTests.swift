@@ -18,7 +18,22 @@ final class WeatherAppTests: XCTestCase {
         sutNetworkManager = NetworkManager()
         super.setUp()
     }
-
+    
+    func testGetLocation() {
+        // 1.given
+        var currentLocation: CLLocation?
+        
+        // 2.when
+        currentLocation = sutLocationManager.getCurrentLocation()
+        guard let current = currentLocation else {
+            return
+        }
+        
+        // 3.then
+        XCTAssertEqual(current.coordinate.latitude, 37.785834)
+        XCTAssertEqual(current.coordinate.longitude, -122.406417)
+    }
+    
     override func tearDown() {
         sutLocationManager = nil
         sutNetworkManager = nil
