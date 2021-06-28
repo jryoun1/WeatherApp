@@ -17,6 +17,11 @@ final class LocationManager {
         locationManger.requestWhenInUseAuthorization()
     }
     
+    func configureLocationManager(viewController: UIViewController) {
+        locationManger.delegate = viewController as? CLLocationManagerDelegate 
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
     func checkLocationAuthorization() throws {
         switch locationManger.authorizationStatus {
         case .notDetermined, .denied:
@@ -26,6 +31,13 @@ final class LocationManager {
         default:
             throw WeatherError.unknown
         }
+    }
+    
+    func getCurrentLocation() -> CLLocation? {
+        guard let currentLocation = self.locationManger.location else {
+            return nil
+        }
+        return currentLocation
     }
     
     func convertCoordinateToAddress(completion: @escaping resultHandler) {
