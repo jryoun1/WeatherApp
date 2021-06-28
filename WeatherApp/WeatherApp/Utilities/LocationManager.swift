@@ -28,6 +28,13 @@ final class LocationManager {
         }
     }
     
+    func getCurrentLocation() -> CLLocation? {
+        guard let currentLocation = self.locationManger.location else {
+            return nil
+        }
+        return currentLocation
+    }
+    
     func convertCoordinateToAddress() {
         if let lastLocation = self.locationManger.location {
             let geoCoder = CLGeocoder()
