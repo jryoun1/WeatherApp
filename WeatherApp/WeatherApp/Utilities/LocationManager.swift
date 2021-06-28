@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 
 final class LocationManager {
+    public typealias resultHandler = (Result<[CLPlacemark]?, WeatherError>) -> Void
     let locationManger = CLLocationManager()
     var currentAddress: String?
     
@@ -16,32 +17,29 @@ final class LocationManager {
         locationManger.requestWhenInUseAuthorization()
     }
     
-    func checkLocationAuthorization() {
+    func checkLocationAuthorization() throws {
         switch locationManger.authorizationStatus {
         case .notDetermined, .denied:
-            //TODO: - error 처리 필요
-            return
+            throw WeatherError.failGetAuthorization
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger.startUpdatingLocation()
         default:
-            return
+            throw WeatherError.unknown
         }
     }
     
-    func convertCoordinateToAddress() {
+    func convertCoordinateToAddress(completion: @escaping resultHandler) {
         if let lastLocation = self.locationManger.location {
             let geoCoder = CLGeocoder()
             geoCoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) -> Void in
-                guard let error = error else {
-                    //TODO: error 처리 필요
-                    return
+                if let _ = error {
+                    return completion(.failure(.failGetLocation))
                 }
                 
                 guard let placemark = placemarks?.first,
                       let administrativeArea = placemark.administrativeArea,
                       let locality = placemark.locality else {
-                    //TODO: error 처리 필요
-                    return
+                    return completion(.failure(.failGetAddress))
                 }
                 
                 self.currentAddress = "\(administrativeArea) \(locality)"
