@@ -58,6 +58,29 @@ final class WeatherAppTests: XCTestCase {
         XCTAssertEqual(currentAddress, "CA San Francisco")
     }
     
+    func testGetURL() {
+        // 1.given
+        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
+            return
+        }
+        let testImageID = "1D"
+        let expectedCurrentAPIURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=37.785834&lon=-122.406417&units=metric&appid=f69d4e7052b5e2f0dd63a6da187d02f5")
+        let expectedForecastAPIURL = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=37.785834&lon=-122.406417&units=metric&appid=f69d4e7052b5e2f0dd63a6da187d02f5")
+        let expectedImageURL = URL(string: "https://openweathermap.org/img/w/1D.png")
+        
+        // 2.when
+        guard let currentAPIURL = ConfigURL.getWeatherURLWith(locationCoordinate: currentLocation.coordinate, api: .current),
+              let forecastAPIURL = ConfigURL.getWeatherURLWith(locationCoordinate: currentLocation.coordinate, api: .forecast),
+              let imageURL = ConfigURL.getWeatherImageURLWith(imageID: testImageID) else {
+            return
+        }
+        
+        // 3.then
+        XCTAssertEqual(currentAPIURL, expectedCurrentAPIURL)
+        XCTAssertEqual(forecastAPIURL, expectedForecastAPIURL)
+        XCTAssertEqual(imageURL, expectedImageURL)
+    }
+    
     override func tearDown() {
         sutLocationManager = nil
         sutNetworkManager = nil
