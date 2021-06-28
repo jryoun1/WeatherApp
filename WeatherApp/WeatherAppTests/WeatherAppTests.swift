@@ -114,6 +114,39 @@ final class WeatherAppTests: XCTestCase {
         XCTAssertEqual(cityName, "San Francisco")
     }
     
+    func testGetForecastWeatherData() {
+        // 1.given
+        let expectation = XCTestExpectation(description: "APITaskExpectation")
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        var forecastWeatherList: ForecastWeatherList?
+        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
+            return
+        }
+        
+        // 2.when
+        sutNetworkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { result in
+            switch result {
+            case .success(let data):
+                guard let data = data else {
+                    return
+                }
+                do {
+                    forecastWeatherList = try jsonDecoder.decode(ForecastWeatherList.self, from: data)
+                    expectation.fulfill()
+                } catch {
+                    print(error)
+                }
+            case .failure(_):
+                return
+            }
+        }
+        wait(for: [expectation], timeout: 5.0)
+        
+        // 3.then
+        let count = forecastWeatherList?.count
+        XCTAssertEqual(count, 40)
+    }
+    
     override func tearDown() {
         sutLocationManager = nil
         sutNetworkManager = nil
