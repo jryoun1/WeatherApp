@@ -7,14 +7,13 @@
 
 import UIKit
 
-class WeatherTableViewCell: UITableViewCell {
+final class WeatherTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
-
 }
