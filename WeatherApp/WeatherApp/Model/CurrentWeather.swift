@@ -13,7 +13,7 @@ struct CurrentWeather: Decodable {
     let timezone: Date
     let cityName: String
     
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case weather, timezone
         case cityName = "name"
         case temperature = "main"
