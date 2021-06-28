@@ -16,6 +16,11 @@ final class LocationManager {
         locationManger.requestWhenInUseAuthorization()
     }
     
+    func configureLocationManager(viewController: UIViewController) {
+        locationManger.delegate = viewController as? CLLocationManagerDelegate 
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
     func checkLocationAuthorization() {
         switch locationManger.authorizationStatus {
         case .notDetermined, .denied:
