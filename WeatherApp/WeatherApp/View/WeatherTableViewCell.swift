@@ -67,4 +67,12 @@ final class WeatherTableViewCell: UITableViewCell {
             weatherImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
+    
+    func setupCellData(data: ForecastWeather) {
+        let stringDateTime = CustomDateFormatter.utcFormatter.string(from: data.timezone)
+        dateTimeLabel.text = stringDateTime
+        
+        let stringCurrentTemperature = data.temperature.current
+        currentTemperatureLabel.text = "\(stringCurrentTemperature)°"
+    }
 }
