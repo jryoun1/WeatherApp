@@ -32,9 +32,16 @@ final class WeatherTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupWeatherTableViewCell()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func setupWeatherTableViewCell() {
+        contentView.addSubview(dateTimeLabel)
+        contentView.addSubview(currentTemperatureLabel)
+        contentView.addSubview(weatherImageView)
     }
 }
