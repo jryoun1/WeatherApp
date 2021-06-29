@@ -75,4 +75,10 @@ final class WeatherTableViewCell: UITableViewCell {
         let stringCurrentTemperature = data.temperature.current
         currentTemperatureLabel.text = "\(stringCurrentTemperature)°"
     }
+    
+    override func prepareForReuse() {
+        dateTimeLabel.text = nil
+        currentTemperatureLabel.text = nil
+        weatherImageView.image = nil
+    }
 }
