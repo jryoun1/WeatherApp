@@ -8,6 +8,7 @@
 import UIKit
 
 final class WeatherTableViewCell: UITableViewCell {
+    static let cellID = "WeatherTableViewCell"
     private var dateTimeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
