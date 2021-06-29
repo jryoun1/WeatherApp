@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2655E87E2680613600507FA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E87D2680613600507FA1 /* AppDelegate.swift */; };
 		2655E8802680613600507FA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E87F2680613600507FA1 /* SceneDelegate.swift */; };
-		2655E8822680613600507FA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E8812680613600507FA1 /* ViewController.swift */; };
+		2655E8822680613600507FA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E8812680613600507FA1 /* MainViewController.swift */; };
 		2655E8852680613600507FA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2655E8832680613600507FA1 /* Main.storyboard */; };
 		2655E8872680613700507FA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2655E8862680613700507FA1 /* Assets.xcassets */; };
 		2655E88A2680613700507FA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2655E8882680613700507FA1 /* LaunchScreen.storyboard */; };
@@ -24,6 +24,8 @@
 		2655E8B32681AAE700507FA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E8B22681AAE700507FA1 /* NetworkManager.swift */; };
 		2655E8B52681B1D100507FA1 /* ConfigURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E8B42681B1D100507FA1 /* ConfigURL.swift */; };
 		265A6857268638AF00F2B267 /* WeatherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A6856268638AF00F2B267 /* WeatherError.swift */; };
+		265A685A268A264A00F2B267 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */; };
+		265A685C268AE8DF00F2B267 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A685B268AE8DF00F2B267 /* CustomDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 		2655E87A2680613600507FA1 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2655E87D2680613600507FA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2655E87F2680613600507FA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2655E8812680613600507FA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2655E8812680613600507FA1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2655E8842680613600507FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2655E8862680613700507FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2655E8892680613700507FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		2655E8B22681AAE700507FA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2655E8B42681B1D100507FA1 /* ConfigURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigURL.swift; sourceTree = "<group>"; };
 		265A6856268638AF00F2B267 /* WeatherError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherError.swift; sourceTree = "<group>"; };
+		265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
+		265A685B268AE8DF00F2B267 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +103,14 @@
 		2655E87C2680613600507FA1 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				265A685D268B5DBE00F2B267 /* Controller */,
+				265A6858268A25FE00F2B267 /* View */,
 				265A68552686388700F2B267 /* Error */,
 				2655E8AF2681A83C00507FA1 /* Network */,
 				2655E8AA2680ADF000507FA1 /* Utilities */,
 				2655E8912680700100507FA1 /* Model */,
 				2655E87D2680613600507FA1 /* AppDelegate.swift */,
 				2655E87F2680613600507FA1 /* SceneDelegate.swift */,
-				2655E8812680613600507FA1 /* ViewController.swift */,
 				2655E8832680613600507FA1 /* Main.storyboard */,
 				2655E8862680613700507FA1 /* Assets.xcassets */,
 				2655E8882680613700507FA1 /* LaunchScreen.storyboard */,
@@ -139,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				2655E8AB2680AE8700507FA1 /* LocationManager.swift */,
+				265A685B268AE8DF00F2B267 /* CustomDateFormatter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -159,6 +165,22 @@
 				265A6856268638AF00F2B267 /* WeatherError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		265A6858268A25FE00F2B267 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		265A685D268B5DBE00F2B267 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2655E8812680613600507FA1 /* MainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +285,10 @@
 			files = (
 				2655E8932680704C00507FA1 /* CurrentWeather.swift in Sources */,
 				2655E8992680748900507FA1 /* ForecastWeatherList.swift in Sources */,
-				2655E8822680613600507FA1 /* ViewController.swift in Sources */,
+				265A685A268A264A00F2B267 /* WeatherTableViewCell.swift in Sources */,
+				2655E8822680613600507FA1 /* MainViewController.swift in Sources */,
 				2655E8972680725300507FA1 /* Temperature.swift in Sources */,
+				265A685C268AE8DF00F2B267 /* CustomDateFormatter.swift in Sources */,
 				2655E8B32681AAE700507FA1 /* NetworkManager.swift in Sources */,
 				2655E89B268074EB00507FA1 /* ForecastWeather.swift in Sources */,
 				2655E87E2680613600507FA1 /* AppDelegate.swift in Sources */,
