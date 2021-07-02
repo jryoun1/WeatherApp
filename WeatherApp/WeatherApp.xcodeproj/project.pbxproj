@@ -25,6 +25,7 @@
 		265A6857268638AF00F2B267 /* WeatherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A6856268638AF00F2B267 /* WeatherError.swift */; };
 		265A685A268A264A00F2B267 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */; };
 		265A685C268AE8DF00F2B267 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A685B268AE8DF00F2B267 /* CustomDateFormatter.swift */; };
+		265A6861268B84C400F2B267 /* WeatherTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A6860268B84C400F2B267 /* WeatherTableViewHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		265A6856268638AF00F2B267 /* WeatherError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherError.swift; sourceTree = "<group>"; };
 		265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		265A685B268AE8DF00F2B267 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		265A6860268B84C400F2B267 /* WeatherTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				265A6859268A264A00F2B267 /* WeatherTableViewCell.swift */,
+				265A6860268B84C400F2B267 /* WeatherTableViewHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				2655E8992680748900507FA1 /* ForecastWeatherList.swift in Sources */,
 				265A685A268A264A00F2B267 /* WeatherTableViewCell.swift in Sources */,
 				2655E8822680613600507FA1 /* MainViewController.swift in Sources */,
+				265A6861268B84C400F2B267 /* WeatherTableViewHeaderView.swift in Sources */,
 				2655E8972680725300507FA1 /* Temperature.swift in Sources */,
 				265A685C268AE8DF00F2B267 /* CustomDateFormatter.swift in Sources */,
 				2655E8B32681AAE700507FA1 /* NetworkManager.swift in Sources */,
