@@ -49,9 +49,18 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        setupHeaderView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func setupHeaderView() {
+        verticalStackView.addArrangedSubview(addressLabel)
+        verticalStackView.addArrangedSubview(mininumAndMaximumTemperatureLabel)
+        verticalStackView.addArrangedSubview(currentTemperatureLabel)
+        contentView.addSubview(weatherImageView)
+        contentView.addSubview(verticalStackView)
     }
 }
