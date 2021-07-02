@@ -50,6 +50,7 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupHeaderView()
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -62,5 +63,20 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
         verticalStackView.addArrangedSubview(currentTemperatureLabel)
         contentView.addSubview(weatherImageView)
         contentView.addSubview(verticalStackView)
+    }
+    
+    private func configureLayout() {
+        NSLayoutConstraint.activate([
+            weatherImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            weatherImageView.widthAnchor.constraint(equalToConstant: 100),
+            weatherImageView.heightAnchor.constraint(equalTo: weatherImageView.widthAnchor),
+            weatherImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            verticalStackView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 5),
+            verticalStackView.leadingAnchor.constraint(equalTo: weatherImageView.trailingAnchor, constant: 10),
+            verticalStackView.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -5),
+            verticalStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        ])
     }
 }
