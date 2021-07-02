@@ -8,5 +8,9 @@
 import UIKit
 
 final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
-
+    private var weatherImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
 }
