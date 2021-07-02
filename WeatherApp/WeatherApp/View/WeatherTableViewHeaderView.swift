@@ -37,4 +37,13 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
         label.font = .preferredFont(forTextStyle: .largeTitle)
         return label
     }()
+    
+    private var verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 10
+        return stackView
+    }()
 }
