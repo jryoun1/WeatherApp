@@ -79,4 +79,10 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
             verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
     }
+    
+    func setupHeaderViewData(data: CurrentWeather, address: String) {
+        addressLabel.text = address
+        mininumAndMaximumTemperatureLabel.text = "최저 \(data.temperature.minimum)° 최고 \(data.temperature.maximum)°"
+        currentTemperatureLabel.text = "\(data.temperature.current)°"
+    }
 }
