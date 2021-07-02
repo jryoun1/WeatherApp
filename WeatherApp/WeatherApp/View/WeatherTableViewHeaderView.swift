@@ -21,4 +21,12 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
         label.font = .preferredFont(forTextStyle: .body)
         return label
     }()
+    
+    private var mininumAndMaximumTemperatureLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontForContentSizeCategory = true
+        label.font = .preferredFont(forTextStyle: .body)
+        return label
+    }()
 }
