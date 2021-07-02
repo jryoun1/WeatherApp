@@ -10,7 +10,7 @@ import CoreLocation
 
 final class LocationManager {
     let locationManger = CLLocationManager()
-    var currentAddress: String?
+    typealias resultHandler = (Result<String?, WeatherError>) -> Void
     
     func requestAuthorization() {
         locationManger.requestWhenInUseAuthorization()
@@ -21,15 +21,14 @@ final class LocationManager {
         locationManger.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func checkLocationAuthorization() {
+    func checkLocationAuthorization() throws {
         switch locationManger.authorizationStatus {
         case .notDetermined, .denied:
-            //TODO: - error 처리 필요
-            return
+            throw WeatherError.failGetAuthorization
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger.startUpdatingLocation()
         default:
-            return
+            throw WeatherError.unknown
         }
     }
     
@@ -40,24 +39,21 @@ final class LocationManager {
         return currentLocation
     }
     
-    func convertLocationToAddress(location: CLLocation) -> String? {
+    func convertLocationToAddress(location: CLLocation, completion: @escaping resultHandler) {
         let geoCoder = CLGeocoder()
         var currentAddress: String?
         geoCoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
-            if let _ = error {
-                currentAddress = nil
-                return
+            if error != nil {
+                return completion(.failure(.failGetLocation))
             }
             
             guard let placemark = placemarks?.first,
                   let administrativeArea = placemark.administrativeArea,
                   let locality = placemark.locality else {
-                currentAddress = nil
-                return
+                return completion(.failure(.failGetAddress))
             }
-            
             currentAddress = "\(administrativeArea) \(locality)"
+            return completion(.success(currentAddress))
         }
-        return currentAddress
     }
 }

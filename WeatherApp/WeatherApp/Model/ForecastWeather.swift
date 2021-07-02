@@ -12,7 +12,7 @@ struct ForecastWeather: Decodable {
     let temperature: Temperature
     let weather: [Weather]
     
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case weather
         case timezone = "dt"
         case temperature = "main"
