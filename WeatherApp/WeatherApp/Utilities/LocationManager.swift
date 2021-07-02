@@ -32,13 +32,6 @@ final class LocationManager {
         }
     }
     
-    func getCurrentLocation() -> CLLocation? {
-        guard let currentLocation = self.locationManger.location else {
-            return nil
-        }
-        return currentLocation
-    }
-    
     func convertLocationToAddress(location: CLLocation) {
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
