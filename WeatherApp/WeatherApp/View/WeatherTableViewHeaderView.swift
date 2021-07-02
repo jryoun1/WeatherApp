@@ -46,4 +46,12 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
         stackView.spacing = 10
         return stackView
     }()
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }
