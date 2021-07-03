@@ -9,6 +9,7 @@ import UIKit
 
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private let locationManager = LocationManager()
     private var currentWeather: CurrentWeather?
     private var forecastWeatherList: ForecastWeatherList?
     
