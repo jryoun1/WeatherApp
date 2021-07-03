@@ -45,4 +45,12 @@ extension MainViewController: UITableViewDataSource {
         
         return weatherTableViewCell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let weatherTableViewHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: WeatherTableViewHeaderView.headerViewID) as? WeatherTableViewHeaderView else {
+            return UIView()
+        }
+        
+        return weatherTableViewHeaderView
+    }
 }
