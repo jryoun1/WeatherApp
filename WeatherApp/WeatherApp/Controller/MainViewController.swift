@@ -8,6 +8,8 @@
 import UIKit
 
 final class MainViewController: UIViewController {
+    private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
