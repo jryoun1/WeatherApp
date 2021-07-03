@@ -79,4 +79,13 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.convertLocationToAddress(location: currentLocation)
         
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        do {
+            try locationManager.checkLocationAuthorization()
+        } catch(let error) {
+            //TODO: Error 처리 필요
+            print(error)
+        }
+    }
 }
