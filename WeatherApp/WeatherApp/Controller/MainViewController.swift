@@ -18,7 +18,6 @@ final class MainViewController: UIViewController {
     }
     
     private func setupWeatherTableView() {
-        weatherTableView.delegate = self
         weatherTableView.dataSource = self
         weatherTableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.cellID)
         weatherTableView.register(WeatherTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherTableViewHeaderView.headerViewID)
@@ -31,5 +30,11 @@ final class MainViewController: UIViewController {
             weatherTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             weatherTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+}
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forecastWeatherList?.count ?? 0
     }
 }
