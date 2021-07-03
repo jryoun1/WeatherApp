@@ -10,14 +10,14 @@ import CoreLocation
 
 final class LocationManager {
     let locationManger = CLLocationManager()
-    typealias resultHandler = (Result<String?, WeatherError>) -> Void
+    var currentAddress: String?
     
     func requestAuthorization() {
         locationManger.requestWhenInUseAuthorization()
     }
     
     func configureLocationManager(viewController: UIViewController) {
-        locationManger.delegate = viewController as? CLLocationManagerDelegate 
+        locationManger.delegate = viewController as? CLLocationManagerDelegate
         locationManger.desiredAccuracy = kCLLocationAccuracyBest
     }
     
@@ -32,28 +32,19 @@ final class LocationManager {
         }
     }
     
-    func getCurrentLocation() -> CLLocation? {
-        guard let currentLocation = self.locationManger.location else {
-            return nil
-        }
-        return currentLocation
-    }
-    
-    func convertLocationToAddress(location: CLLocation, completion: @escaping resultHandler) {
+    func convertLocationToAddress(location: CLLocation) {
         let geoCoder = CLGeocoder()
-        var currentAddress: String?
         geoCoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
             if error != nil {
-                return completion(.failure(.failGetLocation))
+                return
             }
             
             guard let placemark = placemarks?.first,
                   let administrativeArea = placemark.administrativeArea,
                   let locality = placemark.locality else {
-                return completion(.failure(.failGetAddress))
+                return
             }
-            currentAddress = "\(administrativeArea) \(locality)"
-            return completion(.success(currentAddress))
+            self.currentAddress = "\(administrativeArea) \(locality)"
         }
     }
 }

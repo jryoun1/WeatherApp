@@ -25,7 +25,7 @@ final class WeatherTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var weatherImageView: UIImageView = {
+    var weatherImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
