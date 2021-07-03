@@ -10,6 +10,7 @@ import UIKit
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
     private var currentWeather: CurrentWeather?
+    private var forecastWeatherList: ForecastWeatherList?
 
     override func viewDidLoad() {
         super.viewDidLoad()
