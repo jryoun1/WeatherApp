@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
@@ -65,5 +66,17 @@ extension MainViewController: UITableViewDataSource {
         }
         
         return weatherTableViewHeaderView
+    }
+}
+
+// MARK: Extension - CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else {
+            return
+        }
+        locationManager.locationManger.stopUpdatingLocation()
+        locationManager.convertLocationToAddress(location: currentLocation)
+        
     }
 }
