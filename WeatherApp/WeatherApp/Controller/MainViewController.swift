@@ -15,7 +15,19 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLocationManager()
         setupWeatherTableView()
+    }
+    
+    private func configureLocationManager() {
+        locationManager.configureLocationManager(viewController: self)
+        locationManager.requestAuthorization()
+        do {
+            try locationManager.checkLocationAuthorization()
+        } catch(let error) {
+            //TODO: Error 처리 필요
+            print(error)
+        }
     }
     
     private func setupWeatherTableView() {
