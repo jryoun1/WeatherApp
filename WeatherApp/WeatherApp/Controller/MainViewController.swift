@@ -40,6 +40,7 @@ final class MainViewController: UIViewController {
         weatherTableView.register(WeatherTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherTableViewHeaderView.headerViewID)
         
         weatherTableView.translatesAutoresizingMaskIntoConstraints = false
+        weatherTableView.backgroundView = UIImageView(image: UIImage(named: "backgroundNight"))
         view.addSubview(weatherTableView)
         NSLayoutConstraint.activate([
             weatherTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -84,6 +85,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
+        weatherTableViewCell.backgroundColor = .clear
         return weatherTableViewCell
     }
     
