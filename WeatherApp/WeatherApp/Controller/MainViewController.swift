@@ -99,6 +99,27 @@ extension MainViewController: CLLocationManagerDelegate {
                 print(error)
             }
         }
+        
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { result in
+            switch result {
+            case .success(let data):
+                guard let forecastWeatherListData = data else {
+                    return
+                }
+                do {
+                    self.forecastWeatherList = try JSONDecoder().decode(ForecastWeatherList.self, from: forecastWeatherListData)
+                    DispatchQueue.main.async {
+                        self.weatherTableView.reloadSections(IndexSet(integer: 0), with: .none)
+                    }
+                } catch(let error) {
+                    //TODO: Error 처리 필요
+                    print(error)
+                }
+            case .failure(let error):
+                //TODO: Error 처리 필요
+                print(error)
+            }
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
