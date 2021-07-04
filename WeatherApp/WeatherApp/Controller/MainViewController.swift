@@ -58,6 +58,30 @@ extension MainViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        if let forecastWeatherData = forecastWeatherList?.list[indexPath.row],
+           let imageID = forecastWeatherData.weather.first?.icon {
+            weatherTableViewCell.setupCellData(data: forecastWeatherData)
+            
+            networkManager.loadImage(imageID: imageID) { result in
+                switch result {
+                case .success(let data):
+                    guard let image = data else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        if let index: IndexPath = tableView.indexPath(for: weatherTableViewCell){
+                            if index.row == indexPath.row {
+                                weatherTableViewCell.weatherImageView.image = UIImage(data: image)
+                            }
+                        }
+                    }
+                case .failure(let error):
+                    //TODO: Error 처리 필요
+                    print(error)
+                }
+            }
+        }
+        
         return weatherTableViewCell
     }
     
