@@ -90,6 +90,27 @@ extension MainViewController: UITableViewDataSource {
             return UIView()
         }
         
+        if let currentWeatherData = currentWeather,
+           let imageID = currentWeatherData.weather.first?.icon,
+           let currentAddress = locationManager.currentAddress {
+            weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: currentAddress)
+            
+            networkManager.loadImage(imageID: imageID) { result in
+                switch result {
+                case .success(let data):
+                    guard let image = data else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        weatherTableViewHeaderView.weatherImageView.image = UIImage(data: image)
+                    }
+                case .failure(let error):
+                    //TODO: Error 처리 필요
+                    print(error)
+                }
+            }
+        }
+        
         return weatherTableViewHeaderView
     }
 }
