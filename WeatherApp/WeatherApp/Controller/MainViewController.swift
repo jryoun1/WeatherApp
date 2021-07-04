@@ -79,6 +79,26 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.locationManger.stopUpdatingLocation()
         locationManager.convertLocationToAddress(location: currentLocation)
         
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { result in
+            switch result {
+            case .success(let data):
+                guard let currentWeatherData = data else {
+                    return
+                }
+                do {
+                    self.currentWeather = try JSONDecoder().decode(CurrentWeather.self, from: currentWeatherData)
+                    DispatchQueue.main.async {
+                        self.weatherTableView.reloadSections([0,0], with: .none)
+                    }
+                } catch(let error) {
+                    //TODO: Error 처리 필요
+                    print(error)
+                }
+            case .failure(let error):
+                //TODO: Error 처리 필요
+                print(error)
+            }
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
