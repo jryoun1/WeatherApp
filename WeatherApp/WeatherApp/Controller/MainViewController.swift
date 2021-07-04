@@ -11,6 +11,7 @@ import CoreLocation
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let locationManager = LocationManager()
+    private let networkManager = NetworkManager()
     private var currentWeather: CurrentWeather?
     private var forecastWeatherList: ForecastWeatherList?
     
