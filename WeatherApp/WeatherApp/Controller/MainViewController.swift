@@ -39,8 +39,13 @@ final class MainViewController: UIViewController {
         weatherTableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.cellID)
         weatherTableView.register(WeatherTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherTableViewHeaderView.headerViewID)
         
-        weatherTableView.backgroundView = UIImageView(image: UIImage(named: "backgroundNight"))
+        configureWeatherTableViewBackgroundView()
         configureWeatherTableViewLayout()
+    }
+    
+    private func configureWeatherTableViewBackgroundView() {
+        weatherTableView.backgroundView = UIImageView(image: UIImage(named: "weatherAppBackground"))
+        weatherTableView.backgroundView?.alpha = 0.8
     }
     
     private func configureWeatherTableViewLayout() {
