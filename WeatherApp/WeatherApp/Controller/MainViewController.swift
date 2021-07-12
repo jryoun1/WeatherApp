@@ -19,6 +19,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         configureLocationManager()
         setupWeatherTableView()
+        setupRefresh()
     }
     
     private func configureLocationManager() {
@@ -57,6 +58,19 @@ final class MainViewController: UIViewController {
             weatherTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             weatherTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+
+    private func setupRefresh() {
+        let refresh: UIRefreshControl = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateUI(refresh: )), for: .valueChanged)
+        refresh.tintColor = .gray
+        weatherTableView.refreshControl = refresh
+    }
+    
+    @objc private func updateUI(refresh: UIRefreshControl) {
+        locationManager.requestAuthorization()
+        refresh.endRefreshing()
+        weatherTableView.reloadData()
     }
 }
 
