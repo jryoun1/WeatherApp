@@ -39,8 +39,12 @@ final class MainViewController: UIViewController {
         weatherTableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.cellID)
         weatherTableView.register(WeatherTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherTableViewHeaderView.headerViewID)
         
-        weatherTableView.translatesAutoresizingMaskIntoConstraints = false
         weatherTableView.backgroundView = UIImageView(image: UIImage(named: "backgroundNight"))
+        configureWeatherTableViewLayout()
+    }
+    
+    private func configureWeatherTableViewLayout() {
+        weatherTableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(weatherTableView)
         NSLayoutConstraint.activate([
             weatherTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
