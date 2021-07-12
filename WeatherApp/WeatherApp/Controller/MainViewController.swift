@@ -19,6 +19,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         configureLocationManager()
         setupWeatherTableView()
+        setupRefresh()
     }
     
     private func configureLocationManager() {
@@ -39,8 +40,17 @@ final class MainViewController: UIViewController {
         weatherTableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.cellID)
         weatherTableView.register(WeatherTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: WeatherTableViewHeaderView.headerViewID)
         
+        configureWeatherTableViewBackgroundView()
+        configureWeatherTableViewLayout()
+    }
+    
+    private func configureWeatherTableViewBackgroundView() {
+        weatherTableView.backgroundView = UIImageView(image: UIImage(named: "weatherAppBackground"))
+        weatherTableView.backgroundView?.alpha = 0.8
+    }
+    
+    private func configureWeatherTableViewLayout() {
         weatherTableView.translatesAutoresizingMaskIntoConstraints = false
-        weatherTableView.backgroundView = UIImageView(image: UIImage(named: "backgroundNight"))
         view.addSubview(weatherTableView)
         NSLayoutConstraint.activate([
             weatherTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -48,6 +58,19 @@ final class MainViewController: UIViewController {
             weatherTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             weatherTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+
+    private func setupRefresh() {
+        let refresh: UIRefreshControl = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateUI(refresh: )), for: .valueChanged)
+        refresh.tintColor = .gray
+        weatherTableView.refreshControl = refresh
+    }
+    
+    @objc private func updateUI(refresh: UIRefreshControl) {
+        locationManager.requestAuthorization()
+        refresh.endRefreshing()
+        weatherTableView.reloadData()
     }
 }
 
