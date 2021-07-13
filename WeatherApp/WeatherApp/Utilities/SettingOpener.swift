@@ -14,5 +14,11 @@ protocol URLOpening {
 extension UIApplication: URLOpening { }
 
 final class SettingOpener {
-
+    private var openSettingsURLString: String
+    private let urlOpener: URLOpening
+    
+    init(urlOpener: URLOpening = UIApplication.shared, openSettingsURLString: String = UIApplication.openSettingsURLString) {
+        self.urlOpener = urlOpener
+        self.openSettingsURLString = openSettingsURLString
+    }
 }
