@@ -23,12 +23,12 @@ final class LocationManager {
     
     func checkLocationAuthorization() throws {
         switch locationManger.authorizationStatus {
-        case .notDetermined, .denied:
+        case .denied:
             throw WeatherError.failGetAuthorization
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger.startUpdatingLocation()
         default:
-            throw WeatherError.unknown
+            return
         }
     }
     
