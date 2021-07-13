@@ -27,7 +27,7 @@ extension UIViewController {
             }
         case .failGetAuthorization:
             DispatchQueue.main.async {
-                self.showAlert(about: .failGetAuthorization)
+                self.showAuthorizationAlert(about: .failGetAuthorization)
             }
         case .failTransportData:
             DispatchQueue.main.async {
@@ -58,5 +58,21 @@ extension UIViewController {
                 self.showAlert(about: .unknown)
             }
         }
+    }
+    
+    //MARK: - LocationAuthorizationRequest fail
+    private func showAuthorizationAlert(about error: WeatherError) {
+        let alert = UIAlertController(title: nil,
+                                      message: "\(error.localizedDescription)\n위치 정보를 허용해야만 날씨 데이터를 받아올 수 있습니다.\n설정화면으로 이동할까요?",
+                                      preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "이동", style: .default) { _ in
+            //openSetting 
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
