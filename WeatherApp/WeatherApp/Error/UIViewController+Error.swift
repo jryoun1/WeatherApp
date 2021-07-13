@@ -18,4 +18,45 @@ extension UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func handleError(from error: WeatherError) {
+        switch error {
+        case .failGetLocation:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failGetLocation)
+            }
+        case .failGetAuthorization:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failGetAuthorization)
+            }
+        case .failTransportData:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failTransportData)
+            }
+        case .failGetData:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failGetData)
+            }
+        case .failGetImage:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failGetImage)
+            }
+        case .failDecode:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failDecode)
+            }
+        case .failMakeURL:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failMakeURL)
+            }
+        case .failGetAddress:
+            DispatchQueue.main.async {
+                self.showAlert(about: .failGetAddress)
+            }
+        case .unknown:
+            DispatchQueue.main.async {
+                self.showAlert(about: .unknown)
+            }
+        }
+    }
 }
