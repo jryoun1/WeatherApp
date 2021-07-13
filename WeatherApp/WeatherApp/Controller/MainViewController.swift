@@ -12,8 +12,8 @@ final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let locationManager = LocationManager()
     private let networkManager = NetworkManager()
-    private var currentWeather: CurrentWeather?
-    private var forecastWeatherList: ForecastWeatherList?
+    private var currentWeather: CurrentWeather? = try? JSONDecoder().decode(CurrentWeather.self, from: NSDataAsset(name:"CurrentWeather")!.data)
+    private var forecastWeatherList: ForecastWeatherList? = try? JSONDecoder().decode(ForecastWeatherList.self, from: NSDataAsset(name:"5DayWeatherForecast")!.data)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,9 +116,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if let currentWeatherData = currentWeather,
-           let imageID = currentWeatherData.weather.first?.icon,
-           let currentAddress = locationManager.currentAddress {
-            weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: currentAddress)
+           let imageID = currentWeatherData.weather.first?.icon {
+            
+            if let currentAddress = locationManager.currentAddress {
+                weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: currentAddress)
+            } else {
+                weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: "CA San Francisco")
+            }
             
             networkManager.loadImage(imageID: imageID) { [weak self] result in
                 switch result {
