@@ -28,8 +28,7 @@ final class MainViewController: UIViewController {
         do {
             try locationManager.checkLocationAuthorization()
         } catch(let error) {
-            //TODO: Error 처리 필요
-            print(error)
+            handleError(from: error as! WeatherError)
         }
     }
     
@@ -59,7 +58,7 @@ final class MainViewController: UIViewController {
             weatherTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
-
+    
     private func setupRefresh() {
         let refresh: UIRefreshControl = UIRefreshControl()
         refresh.addTarget(self, action: #selector(updateUI(refresh: )), for: .valueChanged)
@@ -88,7 +87,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
            let imageID = forecastWeatherData.weather.first?.icon {
             weatherTableViewCell.setupCellData(data: forecastWeatherData)
             
-            networkManager.loadImage(imageID: imageID) { result in
+            networkManager.loadImage(imageID: imageID) { [weak self] result in
                 switch result {
                 case .success(let data):
                     guard let image = data else {
@@ -101,9 +100,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                             }
                         }
                     }
-                case .failure(let error):
-                    //TODO: Error 처리 필요
-                    print(error)
+                case .failure:
+                    self?.handleError(from: .failGetData)
                 }
             }
         }
@@ -122,7 +120,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
            let currentAddress = locationManager.currentAddress {
             weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: currentAddress)
             
-            networkManager.loadImage(imageID: imageID) { result in
+            networkManager.loadImage(imageID: imageID) { [weak self] result in
                 switch result {
                 case .success(let data):
                     guard let image = data else {
@@ -131,9 +129,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                     DispatchQueue.main.async {
                         weatherTableViewHeaderView.weatherImageView.image = UIImage(data: image)
                     }
-                case .failure(let error):
-                    //TODO: Error 처리 필요
-                    print(error)
+                case .failure:
+                    self?.handleError(from: .failGetData)
                 }
             }
         }
@@ -151,45 +148,41 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.locationManger.stopUpdatingLocation()
         locationManager.convertLocationToAddress(location: currentLocation)
         
-        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { result in
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let currentWeatherData = data else {
                     return
                 }
                 do {
-                    self.currentWeather = try JSONDecoder().decode(CurrentWeather.self, from: currentWeatherData)
+                    self?.currentWeather = try JSONDecoder().decode(CurrentWeather.self, from: currentWeatherData)
                     DispatchQueue.main.async {
-                        self.weatherTableView.reloadSections([0,0], with: .none)
+                        self?.weatherTableView.reloadSections([0,0], with: .none)
                     }
-                } catch(let error) {
-                    //TODO: Error 처리 필요
-                    print(error)
+                } catch {
+                    self?.handleError(from: .failDecode)
                 }
-            case .failure(let error):
-                //TODO: Error 처리 필요
-                print(error)
+            case .failure:
+                self?.handleError(from: .failGetData)
             }
         }
         
-        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { result in
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let forecastWeatherListData = data else {
                     return
                 }
                 do {
-                    self.forecastWeatherList = try JSONDecoder().decode(ForecastWeatherList.self, from: forecastWeatherListData)
+                    self?.forecastWeatherList = try JSONDecoder().decode(ForecastWeatherList.self, from: forecastWeatherListData)
                     DispatchQueue.main.async {
-                        self.weatherTableView.reloadSections(IndexSet(integer: 0), with: .none)
+                        self?.weatherTableView.reloadSections(IndexSet(integer: 0), with: .none)
                     }
-                } catch(let error) {
-                    //TODO: Error 처리 필요
-                    print(error)
+                } catch {
+                    self?.handleError(from: .failDecode)
                 }
-            case .failure(let error):
-                //TODO: Error 처리 필요
-                print(error)
+            case .failure:
+                self?.handleError(from: .failGetData)
             }
         }
     }
@@ -198,8 +191,7 @@ extension MainViewController: CLLocationManagerDelegate {
         do {
             try locationManager.checkLocationAuthorization()
         } catch(let error) {
-            //TODO: Error 처리 필요
-            print(error)
+            handleError(from: error as! WeatherError)
         }
     }
 }
