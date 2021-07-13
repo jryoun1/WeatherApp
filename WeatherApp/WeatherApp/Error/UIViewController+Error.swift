@@ -67,12 +67,17 @@ extension UIViewController {
                                       preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "이동", style: .default) { _ in
-            //openSetting 
+            self.openSetting()
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func openSetting() {
+        let settingOpener = SettingOpener()
+        settingOpener.open()
     }
 }
