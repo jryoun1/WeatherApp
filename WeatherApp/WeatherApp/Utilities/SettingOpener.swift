@@ -21,4 +21,10 @@ final class SettingOpener {
         self.urlOpener = urlOpener
         self.openSettingsURLString = openSettingsURLString
     }
+    
+    func open() {
+        if let url = URL(string: self.openSettingsURLString) {
+            urlOpener.open(url, options: [:], completionHandler: nil)
+        }
+    }
 }
