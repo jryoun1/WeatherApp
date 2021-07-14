@@ -8,7 +8,7 @@
 import Foundation
 
 struct ForecastWeather: Decodable {
-    let timezone: Date
+    let timezone: TimeInterval
     let temperature: Temperature
     let weather: [Weather]
     
