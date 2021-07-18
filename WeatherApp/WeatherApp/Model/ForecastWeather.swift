@@ -8,11 +8,11 @@
 import Foundation
 
 struct ForecastWeather: Decodable {
-    let timezone: Date
+    let timezone: TimeInterval
     let temperature: Temperature
     let weather: [Weather]
     
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case weather
         case timezone = "dt"
         case temperature = "main"

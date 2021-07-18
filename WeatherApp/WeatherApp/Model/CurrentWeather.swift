@@ -10,11 +10,10 @@ import Foundation
 struct CurrentWeather: Decodable {
     let weather: [Weather]
     let temperature: Temperature
-    let timezone: Date
     let cityName: String
     
-    enum codingKeys: String, CodingKey {
-        case weather, timezone
+    enum CodingKeys: String, CodingKey {
+        case weather
         case cityName = "name"
         case temperature = "main"
     }

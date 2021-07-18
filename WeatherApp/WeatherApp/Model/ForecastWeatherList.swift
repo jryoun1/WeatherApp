@@ -11,7 +11,7 @@ struct ForecastWeatherList: Decodable {
     let list: [ForecastWeather]
     let count: Int
     
-    enum codingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case list
         case count = "cnt"
     }

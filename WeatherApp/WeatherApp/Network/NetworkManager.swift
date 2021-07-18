@@ -8,7 +8,9 @@
 import UIKit
 import CoreLocation
 
-struct NetworkManager {
+final class NetworkManager {
+    static let shared = NetworkManager()
+    private init() {}
     typealias resultHandler = (Result<Data?, WeatherError>) -> Void
     
     func loadData(locationCoordinate: CLLocationCoordinate2D, api: WeatherAPI, completion: @escaping resultHandler) {
