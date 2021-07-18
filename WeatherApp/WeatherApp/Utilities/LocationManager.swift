@@ -16,11 +16,15 @@ final class LocationManager {
         locationManger.requestWhenInUseAuthorization()
     }
     
-    func checkLocationAuthorization() {
+    func configureLocationManager(viewController: UIViewController) {
+        locationManger.delegate = viewController as? CLLocationManagerDelegate
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationAuthorization() throws {
         switch locationManger.authorizationStatus {
-        case .notDetermined, .denied:
-            //TODO: - error 처리 필요
-            return
+        case .denied:
+            throw WeatherError.failGetAuthorization
         case .authorizedAlways, .authorizedWhenInUse:
             locationManger.startUpdatingLocation()
         default:
@@ -28,24 +32,19 @@ final class LocationManager {
         }
     }
     
-    func convertCoordinateToAddress() {
-        if let lastLocation = self.locationManger.location {
-            let geoCoder = CLGeocoder()
-            geoCoder.reverseGeocodeLocation(lastLocation) { (placemarks, error) -> Void in
-                guard let error = error else {
-                    //TODO: error 처리 필요
-                    return
-                }
-                
-                guard let placemark = placemarks?.first,
-                      let administrativeArea = placemark.administrativeArea,
-                      let locality = placemark.locality else {
-                    //TODO: error 처리 필요
-                    return
-                }
-                
-                self.currentAddress = "\(administrativeArea) \(locality)"
+    func convertLocationToAddress(location: CLLocation) {
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) -> Void in
+            if error != nil {
+                return
             }
+            
+            guard let placemark = placemarks?.first,
+                  let administrativeArea = placemark.administrativeArea,
+                  let locality = placemark.locality else {
+                return
+            }
+            self.currentAddress = "\(administrativeArea) \(locality)"
         }
     }
 }
