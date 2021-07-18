@@ -11,7 +11,6 @@ import CoreLocation
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let locationManager = LocationManager()
-    private let networkManager = NetworkManager()
     private var currentWeather: CurrentWeather? = try? JSONDecoder().decode(CurrentWeather.self, from: NSDataAsset(name:"CurrentWeather")!.data)
     private var forecastWeatherList: ForecastWeatherList? = try? JSONDecoder().decode(ForecastWeatherList.self, from: NSDataAsset(name:"5DayWeatherForecast")!.data)
     
@@ -87,21 +86,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
            let imageID = forecastWeatherData.weather.first?.icon {
             weatherTableViewCell.setupCellData(data: forecastWeatherData)
             
-            networkManager.loadImage(imageID: imageID) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    guard let image = data else {
-                        return
+            DispatchQueue.main.async {
+                if let index: IndexPath = tableView.indexPath(for: weatherTableViewCell){
+                    if index.row == indexPath.row {
+                        weatherTableViewCell.weatherImageView.loadImage(imageID)
                     }
-                    DispatchQueue.main.async {
-                        if let index: IndexPath = tableView.indexPath(for: weatherTableViewCell){
-                            if index.row == indexPath.row {
-                                weatherTableViewCell.weatherImageView.image = UIImage(data: image)
-                            }
-                        }
-                    }
-                case .failure:
-                    self?.handleError(from: .failGetData)
                 }
             }
         }
@@ -124,18 +113,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 weatherTableViewHeaderView.setupHeaderViewData(data: currentWeatherData, address: "CA San Francisco")
             }
             
-            networkManager.loadImage(imageID: imageID) { [weak self] result in
-                switch result {
-                case .success(let data):
-                    guard let image = data else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        weatherTableViewHeaderView.weatherImageView.image = UIImage(data: image)
-                    }
-                case .failure:
-                    self?.handleError(from: .failGetData)
-                }
+            DispatchQueue.main.async {
+                weatherTableViewHeaderView.weatherImageView.loadImage(imageID)
             }
         }
         
@@ -152,7 +131,7 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.locationManger.stopUpdatingLocation()
         locationManager.convertLocationToAddress(location: currentLocation)
         
-        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { [weak self] result in
+        NetworkManager.shared.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let currentWeatherData = data else {
@@ -171,7 +150,7 @@ extension MainViewController: CLLocationManagerDelegate {
             }
         }
         
-        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { [weak self] result in
+        NetworkManager.shared.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let forecastWeatherListData = data else {
