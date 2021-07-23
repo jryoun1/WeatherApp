@@ -120,6 +120,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         return weatherTableViewHeaderView
     }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 120
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }
 
 // MARK: Extension - CLLocationManagerDelegate

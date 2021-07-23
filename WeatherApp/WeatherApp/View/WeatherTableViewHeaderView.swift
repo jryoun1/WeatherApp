@@ -86,4 +86,12 @@ final class WeatherTableViewHeaderView: UITableViewHeaderFooterView {
         mininumAndMaximumTemperatureLabel.text = "최저 \(data.temperature.minimum)° 최고 \(data.temperature.maximum)°"
         currentTemperatureLabel.text = "\(data.temperature.current)°"
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        weatherImageView.image = nil
+        addressLabel.text = nil
+        mininumAndMaximumTemperatureLabel.text = nil
+        currentTemperatureLabel.text = nil
+    }
 }
