@@ -9,7 +9,15 @@ import XCTest
 @testable import WeatherApp
 
 final class SettingOpenerTests: XCTestCase {
-
+    var urlOpener: MockURLOpener!
+    
+    override func setUpWithError() throws {
+        urlOpener = MockURLOpener()
+    }
+    
+    override func tearDownWithError() throws {
+        urlOpener = nil
+    }
 }
 
 final class MockURLOpener: URLOpening {
