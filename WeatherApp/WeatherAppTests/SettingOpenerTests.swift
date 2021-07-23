@@ -15,6 +15,13 @@ final class SettingOpenerTests: XCTestCase {
         urlOpener = MockURLOpener()
     }
     
+    func testSettingOpenerWhenWrongURLGiven() {
+        let settingOpener = SettingOpener(urlOpener: urlOpener, openSettingsURLString: "app-setting:")
+        settingOpener.open()
+        
+        XCTAssertNotEqual(urlOpener.opendURL, URL(string: "app-settings:"))
+    }
+    
     override func tearDownWithError() throws {
         urlOpener = nil
     }
