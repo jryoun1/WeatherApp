@@ -25,7 +25,7 @@ final class WeatherTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var weatherImageView: UIImageView = {
+    var weatherImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -70,7 +70,8 @@ final class WeatherTableViewCell: UITableViewCell {
     }
     
     func setupCellData(data: ForecastWeather) {
-        let stringDateTime = CustomDateFormatter.utcFormatter.string(from: data.timezone)
+        let date = NSDate(timeIntervalSince1970: data.timezone)
+        let stringDateTime = CustomDateFormatter.utcFormatter.string(from: date as Date)
         dateTimeLabel.text = stringDateTime
         
         let stringCurrentTemperature = data.temperature.current

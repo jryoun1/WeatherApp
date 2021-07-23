@@ -15,54 +15,25 @@ final class WeatherAppTests: XCTestCase {
     
     override func setUp() {
         sutLocationManager = LocationManager()
-        sutNetworkManager = NetworkManager()
+        sutNetworkManager = NetworkManager.shared
         super.setUp()
-    }
-    
-    func testGetLocation() {
-        // 1.given
-        var currentLocation: CLLocation?
-        
-        // 2.when
-        currentLocation = sutLocationManager.getCurrentLocation()
-        guard let current = currentLocation else {
-            return
-        }
-        
-        // 3.then
-        XCTAssertEqual(current.coordinate.latitude, 37.785834)
-        XCTAssertEqual(current.coordinate.longitude, -122.406417)
     }
     
     func testGetAddress() {
         // 1.given
-        let expectation = XCTestExpectation(description: "geoCoderTaskExpectation")
-        var currentAddress: String?
-        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
-            return
-        }
+        let currentLocation = CLLocation(latitude: 37.785834, longitude:  -122.406417)
         
         // 2.when
-        sutLocationManager.convertLocationToAddress(location: currentLocation) { result in
-            switch result {
-            case .success(let address):
-                currentAddress = address
-                expectation.fulfill()
-            case .failure(_):
-                return
-            }
-        }
-        wait(for: [expectation], timeout: 5.0)
+        sutLocationManager.convertLocationToAddress(location: currentLocation)
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 1))
         
         // 3.then
-        XCTAssertEqual(currentAddress, "CA San Francisco")
+        XCTAssertEqual(sutLocationManager.currentAddress, "CA 샌프란시스코")
     }
     
     func testGetURL() {
         // 1.given
-        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
-            return
-        }
+        let currentLocation = CLLocation(latitude: 37.785834, longitude:  -122.406417)
         let testImageID = "1D"
         let expectedCurrentAPIURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=37.785834&lon=-122.406417&units=metric&appid=f69d4e7052b5e2f0dd63a6da187d02f5")
         let expectedForecastAPIURL = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=37.785834&lon=-122.406417&units=metric&appid=f69d4e7052b5e2f0dd63a6da187d02f5")
@@ -86,9 +57,7 @@ final class WeatherAppTests: XCTestCase {
         let expectation = XCTestExpectation(description: "APITaskExpectation")
         let jsonDecoder: JSONDecoder = JSONDecoder()
         var currentWeather: CurrentWeather?
-        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
-            return
-        }
+        let currentLocation = CLLocation(latitude: 37.785834, longitude:  -122.406417)
         
         // 2.when
         sutNetworkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { result in
@@ -119,9 +88,7 @@ final class WeatherAppTests: XCTestCase {
         let expectation = XCTestExpectation(description: "APITaskExpectation")
         let jsonDecoder: JSONDecoder = JSONDecoder()
         var forecastWeatherList: ForecastWeatherList?
-        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
-            return
-        }
+        let currentLocation = CLLocation(latitude: 37.785834, longitude:  -122.406417)
         
         // 2.when
         sutNetworkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { result in
@@ -154,9 +121,7 @@ final class WeatherAppTests: XCTestCase {
         let jsonDecoder: JSONDecoder = JSONDecoder()
         var currentWeather: CurrentWeather?
         var image: UIImage?
-        guard let currentLocation = sutLocationManager.getCurrentLocation() else {
-            return
-        }
+        let currentLocation = CLLocation(latitude: 37.785834, longitude:  -122.406417)
         
         sutNetworkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { result in
             switch result {
