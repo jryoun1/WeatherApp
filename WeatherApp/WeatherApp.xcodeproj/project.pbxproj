@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		264602B1269DE4A200511B4D /* SettingOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264602B0269DE4A200511B4D /* SettingOpener.swift */; };
+		264CADAA26AA7A4600D420A3 /* SettingOpenerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264CADA926AA7A4600D420A3 /* SettingOpenerTests.swift */; };
 		2655E87E2680613600507FA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E87D2680613600507FA1 /* AppDelegate.swift */; };
 		2655E8802680613600507FA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E87F2680613600507FA1 /* SceneDelegate.swift */; };
 		2655E8822680613600507FA1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2655E8812680613600507FA1 /* MainViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		264602B0269DE4A200511B4D /* SettingOpener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOpener.swift; sourceTree = "<group>"; };
+		264CADA926AA7A4600D420A3 /* SettingOpenerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOpenerTests.swift; sourceTree = "<group>"; };
 		2655E87A2680613600507FA1 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2655E87D2680613600507FA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2655E87F2680613600507FA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				2655E8A22680AC3900507FA1 /* WeatherAppTests.swift */,
+				264CADA926AA7A4600D420A3 /* SettingOpenerTests.swift */,
 				2655E8A42680AC3900507FA1 /* Info.plist */,
 			);
 			path = WeatherAppTests;
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2655E8A32680AC3900507FA1 /* WeatherAppTests.swift in Sources */,
+				264CADAA26AA7A4600D420A3 /* SettingOpenerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
