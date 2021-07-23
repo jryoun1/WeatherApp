@@ -11,3 +11,11 @@ import XCTest
 final class SettingOpenerTests: XCTestCase {
 
 }
+
+final class MockURLOpener: URLOpening {
+    var opendURL: URL?
+    
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any], completionHandler completion: ((Bool) -> Void)?) {
+        opendURL = url
+    }
+}
