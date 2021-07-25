@@ -8,9 +8,12 @@
 import UIKit
 import CoreLocation
 
-final class NetworkManager {
-    static let shared = NetworkManager()
-    private init() {}
+struct NetworkManager {
+    let urlSession: URLSession
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
     typealias resultHandler = (Result<Data?, WeatherError>) -> Void
     
     func loadData(locationCoordinate: CLLocationCoordinate2D, api: WeatherAPI, completion: @escaping resultHandler) {
@@ -34,8 +37,7 @@ final class NetworkManager {
     }
     
     private func communicateToServer(with request: URLRequest, completion: @escaping resultHandler) {
-        let session: URLSession = URLSession.shared
-        let dataTask: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+        let dataTask: URLSessionDataTask = urlSession.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             
             if let _ = error {
                 return completion(.failure(.failTransportData))
