@@ -20,7 +20,7 @@ extension UIImageView {
             return
         }
         
-        NetworkManager.shared.loadImage(imageID: imageID) { result in
+        NetworkManager().loadImage(imageID: imageID) { result in
             switch result {
             case .success(let data):
                 if let data = data, let image = UIImage(data: data) {
