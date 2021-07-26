@@ -12,9 +12,9 @@
 - [관련 학습 내용](#관련-학습-내용)
 
 <p>
-  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="250" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="250" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="250" height="650"> 
+  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="260" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="260" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="260" height="650"> 
 </p>
 <br>
 
@@ -63,7 +63,7 @@
 
 ![image-20210723223021699](https://user-images.githubusercontent.com/45090197/126943355-e33260a7-4790-4036-8f63-8b0add9e9951.png)
 
-- MVC pattern 적용 [👉🏻공부한 내용으로 이동](#💡-MVC-Design-pattern)
+- MVC pattern 적용 [👉🏻공부한 내용으로 이동](#MVC-Design-pattern)
 - MainTableViewController에서 TableView를 구현 방법
   - 2개의 cell을 사용해서 2개의 섹션으로 구현하는 방법
   - 1개의 섹션으로 1개의 cell과 TableViewHeaderView로 구현하는 방법 ✅
@@ -112,7 +112,7 @@
 
 > `LocationManager` 사용
 
-위치를 받아오는 과정 👉🏻 [공부한 내용으로 이동](#💡-CLLocationManger,-CLLocationManagerDelegate)
+위치를 받아오는 과정 👉🏻 [공부한 내용으로 이동](#CLLocationManger,-CLLocationManagerDelegate)
 
 1. `CLLocationManager` 객체 생성
 2. delegate와 location 데이터 정확도 설정  : `configureLocationManager()` 함수에서 `desiredAccuracy` 프로퍼티 설정
@@ -131,7 +131,7 @@
 >
 > [Current weather data API](https://openweathermap.org/current) / [5 day weather forecast API](https://openweathermap.org/forecast5#JSON)
 
-- URLSession 활용하여 네트워크 통신 👉🏻 [공부한 내용으로 이동](#💡-URL-Loading-System)
+- URLSession 활용하여 네트워크 통신 👉🏻 [공부한 내용으로 이동](#URL-Loading-System)
 - Decodable : `Data` → `CurrentWeather`, `ForecastWeatherList` 변환
   - `CurrentWeather`, `ForecastWeatherList` 는 `Decodable` 프로토콜 준수
   - `JSONDecoder` 를 사용하여 디코딩
@@ -151,7 +151,7 @@
 3. 네트워크 통신을 하여 비동기처리로 이미지를 가져와서 사용
 4. ImageCacheManager의 캐시에 새롭게 가져온 이미지를 저장
 
-👉🏻 [공부한 내용으로 이동](#💡-Cache)
+👉🏻 [공부한 내용으로 이동](#Cache)
 
 <br>
 
@@ -212,7 +212,7 @@ final class MainViewController: UIViewController {
 
 [2️⃣ Utility Type들의 타입에 대해서](#utility-Type들의-타입에-대해서) <br>
 
-[3️⃣ 날씨 정보와 이미지를 받아오는 비동기처리에서의 에러 핸들링 방법](#날씨-정보와-이미지를-받아오는-비동기처리에서의-에러-핸들링-방법) <br>
+[3️⃣ 날씨 정보 및 이미지를 받아오는 비동기처리에서의 에러 핸들링 방법](#날씨-정보-및-이미지를-받아오는-비동기처리에서의-에러-핸들링-방법) <br>
 
 [4️⃣ 테이블 뷰 내부에서 비동기적처리로 인한 이미지 로딩 문제](#테이블-뷰-내부에서-비동기적처리로-인한-이미지-로딩-문제) <br>
 
@@ -496,7 +496,7 @@ final class MainViewController: UIViewController {
 
 ## 관련 학습 내용
 
-### 💡 MVC Design pattern
+### MVC Design pattern
 
 UIKit app의 구조는 MVC 디자인 패턴을 기반으로 되어있다. <br>
 
@@ -531,7 +531,7 @@ Model은 Observer pattern의 **Notification과 KVO(Key Value Observation)을 통
 
 <br>
 
-### 💡 CLLocationManger, CLLocationManagerDelegate
+### CLLocationManger, CLLocationManagerDelegate
 
 Core Location은 Framework로 **기기의 지리적인 location이나 orientation을 획득하는데 사용**한다. <br>
 
@@ -566,7 +566,7 @@ CLLocationManager를 사용해서 기기의 위도와 경도를 찾으면 이를
 
 <br>
 
-### 💡 URL Loading System
+### URL Loading System
 
 > 표준 Internet protocols를 사용해서 URL과 상호작용하고 서버와 통신하는 시스템
 
@@ -634,7 +634,7 @@ func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URL
 
 <br>
 
-### 💡 GCD (Grand Central Dispatch)
+### GCD (Grand Central Dispatch)
 
 > 멀티 코어와 멀티 프로세싱 환경에서 최적화된 프로그래밍을 할 수 있도록 Apple이 개발한 기술
 
@@ -676,7 +676,7 @@ func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URL
 
 <br>
 
-### 💡 Cache
+### Cache
 
 > 데이터나 값을 미리 복사해 놓는 임시 장소를 가리킨다. 
 
@@ -723,7 +723,7 @@ NSCache는 주로 **생성하는데 비용이 많이 드는 임시 데이터를 
 
 <br>
 
-### 💡 escaping closure 와 Result Type
+### escaping closure 와 Result Type
 
 #### escaping closure
 
