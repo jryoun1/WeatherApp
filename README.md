@@ -12,9 +12,9 @@
 - [관련 학습 내용](#관련-학습-내용)
 
 <p>
-  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="300" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="300" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="300" height="650"> 
+  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="250" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="250" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="250" height="650"> 
 </p>
 <br>
 
