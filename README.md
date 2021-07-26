@@ -8,77 +8,69 @@
 
 - [기능](#기능)
 - [설계 및 구현](#설계-및-구현)
-- [Trouble shooting](#Trouble-shooting-🔫)
+- [Trouble shooting](#Trouble-shooting)
 - [관련 학습 내용](#관련-학습-내용)
 
 <p>
-  <img src="https://i.imgur.com/LwVuJbE.mp4" width="300" height="650">
-  <img src="https://i.imgur.com/nrRH4uu.mp4" width="300" height="650">
-  <img src="https://i.imgur.com/6fRFzIx.mp4" width="300" height="650"> 
+  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="300" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="300" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="300" height="650"> 
 </p>
-
+<br>
 
 
 ## 기능
-
 - [날씨 정보](#날씨-정보)
 - [정보 새로 고침](#정보-새로-고침)
 - [다크모드 대응](#다크모드-대응)
 - [사용자 위치 권한 선택에 따른 대응](#사용자-위치-권한-선택에-따른-대응)
 
-
+<br>
 
 ### 날씨 정보
 
-현재 위치를 기기에서 가져오고, 이를 바탕으로 OpenWeatherMap API를 통해서 날씨정보를 받아와서 보여주는 기능
+현재 위치를 기기에서 가져오고, 이를 바탕으로 OpenWeatherMap API를 통해서 날씨정보를 받아와서 보여주는 기능 <br>
+<img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="300" height="650"> 
 
-<img src="https://i.imgur.com/LwVuJbE.mp4" width="300" height="650" align="left">
-
-
+<br>
 
 ### 정보 새로 고침
+화면을 위에서 아래로 끌었다 놓으면 날씨 정보들을 새로 고치는 기능 <br>
+<img src="https://user-images.githubusercontent.com/45090197/126941838-97107b86-d934-4f53-90f6-271810f60863.gif" width="300" height="650"> 
 
-화면을 위에서 아래로 끌었다 놓으면 날씨 정보들을 새로 고치는 기능
-
-<img src="https://i.imgur.com/QfWurGY.mp4" width="300" height="650" align="left">
-
-
+<br>
 
 ### 다크모드 대응
+일반 모드와 다크 모드인 경우에 배경화면과 글자색의 변화를 주어서 다크모드에 대응할 수 있는 기능 <br>
+<img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="300" height="650"> 
 
-일반 모드와 다크 모드인 경우에 배경화면과 글자색의 변화를 주어서 다크모드에 대응할 수 있는 기능
-
-<img src="https://i.imgur.com/nrRH4uu.mp4" width="300" height="650" align="left">
-
-
+<br>
 
 ### 사용자 위치 권한 선택에 따른 대응
-
 사용자 위치 정보를 얻기 위한 권한 요청 시, 이를 허가하지 않는 경우 설정 창으로 보내주는 기능 <br>
-
-오른쪽 = Xcode Simulator / 왼쪽 = iPhone XR 실제 기기
+오른쪽 = Xcode Simulator / 왼쪽 = iPhone XR 실제 기기 <br>
 
 <p>
-  <img src="https://i.imgur.com/6fRFzIx.mp4" width="300" height="650">
-  <img src="https://i.imgur.com/fhTZb1b.mp4" width="300" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="300" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126945699-829efa90-63c6-45d0-9673-7f516bbb2048.gif" width="300" height="650">
 </p>
 
-
+<br>
 
 ## 설계 및 구현
 
 ### 날씨 모델, View, Controller - MVC 
 
-![image-20210723223021699](file:///Users/yeon/Library/Application%20Support/typora-user-images/image-20210723223021699.png?lastModify=1627128618)
+![image-20210723223021699](https://user-images.githubusercontent.com/45090197/126943355-e33260a7-4790-4036-8f63-8b0add9e9951.png)
 
-- MVC pattern 적용 👉🏻 [공부한 내용으로 이동](#💡-MVC-Design-pattern)
+- MVC pattern 적용 [👉🏻공부한 내용으로 이동](#💡-MVC-Design-pattern)
 - MainTableViewController에서 TableView를 구현 방법
   - 2개의 cell을 사용해서 2개의 섹션으로 구현하는 방법
   - 1개의 섹션으로 1개의 cell과 TableViewHeaderView로 구현하는 방법 ✅
 
 이유는 TableView의 위쪽에 표현되는 현재 날씨의 경우에는 cell이 여러 번 반복되는 것이 아니라 한 번만 나타나고 사용되기 때문에 Cell로 만드는 것보다는 TableViewHeaderView를 사용하여 구현
 
-
+<br>
 
 ### 역할 분배
 
@@ -114,7 +106,7 @@
 |    `SettingOpener`    | 사용자가 위치 사용 권한 요청을 거부한 경우, 설정 창으로 app을 스위칭하는 역할 |
 |  `ImageCacheManager`  | 날씨 이미지를 매번 받지 않기 위해서, 처음에만 서버로부터 받아오고 이후에 memory cache에 저장 및 사용 |
 
-
+<br>
 
 ### 현재 위치 받아오기
 
@@ -131,7 +123,7 @@
    - delegate의 `didUpdateLocation` 함수 호출
 6. Delegate 함수 : `didUpdateLocation` 내부에서는 `.stopUpdatingLocation()` 과 `convertLocationToAddress()` 호출
 
-
+<br>
 
 ### 날씨 정보 받아오기 & 파싱하기 - OpenWeatherMap API / URLSession / Decodable
 
@@ -144,7 +136,7 @@
   - `CurrentWeather`, `ForecastWeatherList` 는 `Decodable` 프로토콜 준수
   - `JSONDecoder` 를 사용하여 디코딩
 
-
+<br>
 
 ### 날씨 이미지 캐싱
 
@@ -153,18 +145,15 @@
 1. NSCache를 가지는 ImageCacheManager singleton 클래스로 생성 
    - Singleton 으로 구현한 이유는 앱 내부에서 memory cache에 저장하고 불러오는 것은 app 내부의 여러 곳에서 사용될 수 있음
    - 따라서 하나의 인스턴스로 memory cache에 저장하거나 불러오도록 하는 것이 적절하다고 판단
-
 2. 날씨 이미지를 가져오기 전에 캐싱된 데이터에 해당 이미지가 있는지 검사
    - 있다면 이미지를 사용
    - 없다면 3번 과정 수행
-
 3. 네트워크 통신을 하여 비동기처리로 이미지를 가져와서 사용
-
 4. ImageCacheManager의 캐시에 새롭게 가져온 이미지를 저장
 
 👉🏻 [공부한 내용으로 이동](#💡-Cache)
 
-
+<br>
 
 ### API 데이터 기반 시간 변환
 
@@ -173,24 +162,21 @@
 API 에서 받은 dateTime (UTC 표준, unix) → 현재 위치의 시간을 한국어로 변환
 
 - `unix` : 시스템이 시간을 표현하는 방법이며, 1970년 1월 1일 목요일(UTC)로부터 이후 경과된 시간을 나타냄
-
-- `TimeInterval` : Double 타입의 별칭 
-
+- `TimeInterval` : Double 타입의 별칭 <br>
   ```swift
   typealias TimeInterval = Double
   ```
-
 1. `dt` TimeInterval (utc 단위 시간) → `NSDate` 타입으로 변경
 2. CustomDataFormatter 사용해서 한국어, 원하는 형식의 String으로 변환
 
-
+<br>
 
 ### 다크 모드 대응
 
 - 다크모드와 일반모드에 따라 MainViewController의 weatherTableView 배경 변경
 - 다크모드와 일반모드에 따른 weatherTableView 내부 글씨색 변경
 
-
+<br>
 
 ### 정보 새로 고침
 
@@ -218,13 +204,13 @@ final class MainViewController: UIViewController {
 }
 ```
 
+<br>
 
-
-## Trouble shooting 🔫
+## Trouble shooting
 
 [1️⃣ 위치 정보와 관련해서 사용자에게 위치 정보 수집 권한을 거절했을 때 발생하는 문제](#위치-정보와-관련해서-사용자에게-위치-정보-수집-권한을-거절했을-때-발생하는-문제) <br>
 
-[2️⃣ Utility Type들의 타입에 대해서](#Utility-Type들의-타입에-대해서) <br>
+[2️⃣ Utility Type들의 타입에 대해서](#utility-Type들의-타입에-대해서) <br>
 
 [3️⃣ 날씨 정보와 이미지를 받아오는 비동기처리에서의 에러 핸들링 방법](#날씨-정보와-이미지를-받아오는-비동기처리에서의-에러-핸들링-방법) <br>
 
@@ -232,7 +218,7 @@ final class MainViewController: UIViewController {
 
 [5️⃣ 테스트 가능하도록 코드 작성하기 🤔](#테스트-가능하도록-코드-작성) <br>
 
-
+<br>
 
 ### 위치 정보와 관련해서 사용자에게 위치 정보 수집 권한을 거절했을 때 발생하는 문제
 
@@ -244,7 +230,7 @@ final class MainViewController: UIViewController {
 
   - 기획에 따라서 다르겠지만, 실제로 서비스에서는 위치 정보를 동의하지 않는 사람들이 많을 수도 있기 때문에 날씨 정보를 자신의 현재 위치가 아닌 원하는 위치를 검색해서 받아올 수 있게 될 수도 있다. 그렇기 때문에 거절 당할 경우에는 **default 데이터를 보여주는 형식으로 수정**하였다. 또한 사용자가 거절을 하게 되면, **"정확한 날씨 정보를 받아오기 위해서는 현재 위치 권한이 필요합니다. 설정창으로 이동할까요"라는 경고 문구와 함께 경고창을 띄워주며 이동 버튼과 취소 버튼을 만들어주면** 실수로 거절한 사용자도 쉽게 다시 위치 정보 수집 권한 요청에 대한 상태를 변경할 수 있도록 수정하였다. 
 
-  
+<br>
 
 ### Utility Type들의 타입에 대해서
 
@@ -263,7 +249,7 @@ final class MainViewController: UIViewController {
     - `ImageCacheManager` 타입은 memory cache를 app 전체에서 어떻게 사용할 것인가에 따라서 다르게 구현할 수 있을 것 같은데, 추후에 app이 확장되어 화면들이 추가되었을 때에도 한 번 다운 받은 날씨 이미지를 사용할 수 있게 하기 위해서 singleton 으로 그래도 유지하였다. 
     - `LocationManager` 타입은 내부에 현재 위치를 주소로 변경한 `currentAddress` property를 가지고 있으므로  추가로 app이 확장되어 화면이 늘어나도 참조를 통해서 값을 확인할 수 있도록 class 타입을 유지하였다.
 
-
+<br>
 
 ### 날씨 정보 및 이미지를 받아오는 비동기처리에서의 에러 핸들링 방법
 
@@ -349,7 +335,7 @@ final class MainViewController: UIViewController {
    }
    ```
 
-   
+<br>
 
 ### 테이블 뷰 내부에서 비동기적처리로 인한 이미지 로딩 문제
 
@@ -421,7 +407,7 @@ final class MainViewController: UIViewController {
     }
     ```
 
-    
+<br>
 
 ### 테스트 가능하도록 코드 작성
 
@@ -506,8 +492,7 @@ final class MainViewController: UIViewController {
   }
   ```
 
-
-
+<br>
 
 ## 관련 학습 내용
 
@@ -520,38 +505,31 @@ MVC는  `Model, View, Controller` 를 의미하며 각각의 객체는 목적에
 #### 역할
 
 - `Model` 객체 : app의 데이터와 비지니스 로직을 관리 
-
 - `View` 객체 : 데이터를 보여주거나 UI를 담당
-
 - `Controller` 객체 : Model 과 View 사이의 다리 역할을 하며 View로부터 사용자의 action을 받아 Model에게 어떠한 작업을 해야하는지 알려주거나, Model의 변화를 View에게 전달하여 업데이트하게 중재
 
 #### 소통 방법
 
 - View → Controller
-
 Controller는 **View에서 발생할 수 있는 action에 대해 target을 생성**한다. 그리고 View에서 사용자에 의해서 action이 발생하면 Controller의 target이 이를 감지하고 작업을 수행한다. 또한 **View는 delegate pattern의 delegate와 datasource를 이용해 Controller에게 어떤 작업을 수행해야하는지** 알릴 수도 있다. 예로 UITableView의 UITableViewDelegate, UITableViewDatasource가 있다.
 
 - Model → Controller
-
 Model은 Observer pattern의 **Notification과 KVO(Key Value Observation)을 통해서** Controller에게 알려준다. 이에 Notification과 KVO는 일을 수행하는 객체가 진행하던 작업이 끝나면 자신들을 구독 중인 객체들에게 신호를 보낸다. 즉, Model에서 작업이 완료되었을 때, Controller에게 신호를 보내게 된다. 
 
 #### 장점
 
 - 다른 패턴에 비해서 코드량이 적음 
-
 - 모두에게 친숙하기 때문에 직접 코드를 작성하지 않은 개발자도 쉽게 유지보수 할 수 있음
-
 - 역할 분담을 고려한 구조를 빠르게 구현 할 수 있음 
 
 #### 단점
 
 - Massive view controller가 작성됨
-
 - Model을 제외하고 View와 Controller는 Unit Test를 수행하기 어렵움
 
 [👉🏻 MVC 패턴에 대한 학습 블로그로 가기]()
 
-
+<br>
 
 ### 💡 CLLocationManger, CLLocationManagerDelegate
 
@@ -560,8 +538,6 @@ Core Location은 Framework로 **기기의 지리적인 location이나 orientatio
 `CLLocationManager ` 클래스 객체를 활용하여 Core Location 서비스를 구성하고, 시작하고 중지할 수 있다. CLLocationManager  **객체의 메서드를 사용하기 전에 반드시 delegate 객체를 설정해야한다.** <br>
 
 `CLLocationMangerDelegate` 는 **location manager객체로부터 이벤트를 받을 때 사용하는 메서드**들이다. location manager는 이 delegate의 메서드들을 앱의 location 관련된 이벤트들을 보고할 때 사용하게 된다. 따라서 **앱의 특정 객체에 이 프로토콜을 구현하고 메서드들을 사용해서 앱을 업데이트 할 수 있다.** <br>
-
-
 
 앱에서 요청할 수 있는 권한 (아래 말고도 선택되지 않거나, 거절의 경우도 존재)
 
@@ -572,9 +548,7 @@ Core Location은 Framework로 **기기의 지리적인 location이나 orientatio
 
 >  모든 경우에 대해서 거절 혹은 실패에 대해서도 핸들링을 할 수 있어야한다. 
 
-
-
-❗️ **Info.plist**
+##### ❗️Info.plist
 
 Property List Key에 `NSLocationWhenInUseUsageDescription`, `NSLocationAlwaysAndWhenInUseUsageDescription` 에
 **왜 앱이 사용자의 위치 정보에 접근해야하는지 원인**을 작성해 주어야한다. 해당 문구를 정확히 작성하여 어떠한 이유로 데이터를 수집하는지 사용자에게 알려주어야한다. 
@@ -583,23 +557,18 @@ Property List Key에 `NSLocationWhenInUseUsageDescription`, `NSLocationAlwaysAnd
 
 [👉🏻 CLLocation에 대한 학습 블로그로 가기](https://velog.io/@minni/CCLocation)
 
-
-
 ##### ⚠️ CLGeocoder
 
 CLLocationManager를 사용해서 기기의 위도와 경도를 찾으면 이를 주소로 바꿔주는 방법은 Apple에서 제공하는 CLGeocoder를 사용하면 된다. `CLGeocoder` 는 위도와 경도를 우리가 친숙한 지역의 이름으로 변경해주거나, 반대로 친숙한 지역의 이름을 위도와 경도로 변경할 수 있다. <br>
-
 이때 ` reverseGeocodeLocation(_:completionHandler:)` 함수를 사용해 CLLocation을 변환할 수 있다. 
 
 [👉🏻 Apple document  CLGeocoder 사용 방법](https://developer.apple.com/documentation/corelocation/converting_between_coordinates_and_user-friendly_place_names)
 
-
+<br>
 
 ### 💡 URL Loading System
 
 > 표준 Internet protocols를 사용해서 URL과 상호작용하고 서버와 통신하는 시스템
-
-
 
 #### URLSession
 
@@ -663,7 +632,7 @@ func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URL
 
 [👉🏻 URLSession에 대해서 공부한 블로그 가기](https://velog.io/@minni/URLSession-URLSessionConfiguration-URLSessionTask)
 
-
+<br>
 
 ### 💡 GCD (Grand Central Dispatch)
 
@@ -703,10 +672,9 @@ func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URL
 </table>
 
 비동기적으로 처리할 때 **UI와 관련된 코드는 반드시 `DispatchQueue.main` 안에서 수행**되어야한다. <br>
-
 반면 **네트워킹과 같은 작업들은 메인쓰레드가 아닌 backgorund queue인 global에서 실행되는 것을 권장**한다. <br>
 
-
+<br>
 
 ### 💡 Cache
 
@@ -724,19 +692,12 @@ iOS에서는 메모리 캐시와 디스크 캐시 2가지 종류의 캐시를 �
 #### Disk Cache
 
 - 캐시에 저장할 데이터를 기기 내부에 아카이빙 하는 방식으로 App을 껐다가 켜도 데이터가 사라지지 않고 남아있다
-
 - **FileManager**를 통해 사용 가능
-
 - App을 삭제할 때 캐시에 저장된 데이터를 삭제하게 만들수도 있고, 그렇지 않고 계속 남아있게 만들수도 있다
-
   - **UserDefault**를 사용하여 간단하게 저장하면, App 삭제시 데이터도 같이 삭제됨
-
   - **파일 경로에 이미지를 저장**하면, App이 삭제되어도 캐시가 남아있게 됨 (보통 파일 경로에 이미지 저장)
-
 - 저장 공간은 상대적으로 크지만, 파일 입출력으로 인해 처리 속도가 메모리 캐시보다는 느리다 <br>
-
   (그러나 네트워크 통신을 통해서 다운로드 하는 것 보다는 훨씬 빠름)
-
 - 예시로 카카오톡에서 이미지나 동영상을 디바이스에 저장하지 않고 눈으로 보기 위해 다운 받은 경우, Disk caching 되어 앱을 종료했다가 다시 실행해도 볼 수 있게 된다
 
 #### NSCache
@@ -760,7 +721,7 @@ NSCache는 주로 **생성하는데 비용이 많이 드는 임시 데이터를 
 
 [👉🏻 캐시에 대한 학습 블로그 가기](https://jryoun1.github.io/swift/Cache/) <br>
 
-
+<br>
 
 ### 💡 escaping closure 와 Result Type
 
