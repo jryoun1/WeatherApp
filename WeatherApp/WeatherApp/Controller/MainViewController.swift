@@ -186,4 +186,8 @@ extension MainViewController: CLLocationManagerDelegate {
             handleError(from: error as! WeatherError)
         }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        handleError(from: .failGetLocation)
+    }
 }
