@@ -11,6 +11,7 @@ import CoreLocation
 final class MainViewController: UIViewController {
     private let weatherTableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let locationManager = LocationManager()
+    private let networkManager = NetworkManager()
     private var currentWeather: CurrentWeather? = try? JSONDecoder().decode(CurrentWeather.self, from: NSDataAsset(name:"CurrentWeather")!.data)
     private var forecastWeatherList: ForecastWeatherList? = try? JSONDecoder().decode(ForecastWeatherList.self, from: NSDataAsset(name:"5DayWeatherForecast")!.data)
     
@@ -139,7 +140,7 @@ extension MainViewController: CLLocationManagerDelegate {
         locationManager.locationManger.stopUpdatingLocation()
         locationManager.convertLocationToAddress(location: currentLocation)
         
-        NetworkManager.shared.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { [weak self] result in
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .current) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let currentWeatherData = data else {
@@ -158,7 +159,7 @@ extension MainViewController: CLLocationManagerDelegate {
             }
         }
         
-        NetworkManager.shared.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { [weak self] result in
+        networkManager.loadData(locationCoordinate: currentLocation.coordinate, api: .forecast) { [weak self] result in
             switch result {
             case .success(let data):
                 guard let forecastWeatherListData = data else {
@@ -184,5 +185,9 @@ extension MainViewController: CLLocationManagerDelegate {
         } catch(let error) {
             handleError(from: error as! WeatherError)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        handleError(from: .failGetLocation)
     }
 }

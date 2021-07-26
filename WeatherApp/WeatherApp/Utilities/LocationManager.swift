@@ -26,7 +26,7 @@ final class LocationManager {
         case .denied:
             throw WeatherError.failGetAuthorization
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManger.startUpdatingLocation()
+            locationManger.requestLocation()
         default:
             return
         }
