@@ -210,7 +210,7 @@ final class MainViewController: UIViewController {
 
 [1️⃣ 위치 정보와 관련해서 사용자에게 위치 정보 수집 권한을 거절했을 때 발생하는 문제](#위치-정보와-관련해서-사용자에게-위치-정보-수집-권한을-거절했을-때-발생하는-문제) <br>
 
-[2️⃣ Utility Type들의 타입에 대해서](#utility-Type들의-타입에-대해서) <br>
+[2️⃣ Utility의 타입에 대해서](#utility의-타입에-대해서) <br>
 
 [3️⃣ 날씨 정보 및 이미지를 받아오는 비동기처리에서의 에러 핸들링 방법](#날씨-정보-및-이미지를-받아오는-비동기처리에서의-에러-핸들링-방법) <br>
 
@@ -232,11 +232,11 @@ final class MainViewController: UIViewController {
 
 <br>
 
-### Utility Type들의 타입에 대해서
+### Utility의 타입에 대해서
 
 - 문제상항
 
-  - WeatherApp 프로젝트 내부에는 NetworkManager, ImageCacheManager, LocationManager와 같이 많은 Utility 타입들이 존재한다. 
+  - WeatherApp 프로젝트 내부에는 NetworkManager, ImageCacheManager, LocationManager와 같이 많은 Utility가 존재한다. 
     - `NetworkManager` : singleton으로 구현
     - `ImageCacheManager` : singleton으로 구현
     - `LocationManager` : class와 global function으로 구현
@@ -244,7 +244,7 @@ final class MainViewController: UIViewController {
 
 - 해결 방법
 
-  - 이를 해결하기 위해서는 먼저 각각의 Utility 타입들의 특징을 파악해야만 했다. 
+  - 이를 해결하기 위해서는 먼저 각각의 Utility들의 특징을 파악해야만 했다. 
     - `NetworkManager` 타입의 경우에는 내부에 상태를 저장하는 프로퍼티는 없기 때문에 singleton보다는 struct 타입으로 수정하였고, init() 함수로 URLSession을 사용자가 커스텀해서 인스턴스를 생성할 수 있도록 수정하였다. 
     - `ImageCacheManager` 타입은 memory cache를 app 전체에서 어떻게 사용할 것인가에 따라서 다르게 구현할 수 있을 것 같은데, 추후에 app이 확장되어 화면들이 추가되었을 때에도 한 번 다운 받은 날씨 이미지를 사용할 수 있게 하기 위해서 singleton 으로 그래도 유지하였다. 
     - `LocationManager` 타입은 내부에 현재 위치를 주소로 변경한 `currentAddress` property를 가지고 있으므로  추가로 app이 확장되어 화면이 늘어나도 참조를 통해서 값을 확인할 수 있도록 class 타입을 유지하였다.
