@@ -51,8 +51,8 @@
 오른쪽 = Xcode Simulator / 왼쪽 = iPhone XR 실제 기기 <br>
 
 <p>
-  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="300" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126945699-829efa90-63c6-45d0-9673-7f516bbb2048.gif" width="300" height="650">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="300" height="630">
+  <img src="https://user-images.githubusercontent.com/45090197/126945699-829efa90-63c6-45d0-9673-7f516bbb2048.gif" width="300" height="630">
 </p>
 
 <br>
