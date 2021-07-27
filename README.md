@@ -12,9 +12,9 @@
 - [관련 학습 내용](#관련-학습-내용)
 
 <p>
-  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="260" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="260" height="650">
-  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="260" height="650"> 
+  <img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="260" height="550">
+  <img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="260" height="550">
+  <img src="https://user-images.githubusercontent.com/45090197/126942966-cda863c0-35f8-479b-af87-479696dd4506.gif" width="260" height="550"> 
 </p>
 <br>
 
@@ -30,19 +30,19 @@
 ### 날씨 정보
 
 현재 위치를 기기에서 가져오고, 이를 바탕으로 OpenWeatherMap API를 통해서 날씨정보를 받아와서 보여주는 기능 <br>
-<img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="300" height="650"> 
+<img src="https://user-images.githubusercontent.com/45090197/126947562-802a54bc-d820-4165-9c91-91b2453a683e.gif" width="300" height="630"> 
 
 <br>
 
 ### 정보 새로 고침
 화면을 위에서 아래로 끌었다 놓으면 날씨 정보들을 새로 고치는 기능 <br>
-<img src="https://user-images.githubusercontent.com/45090197/126941838-97107b86-d934-4f53-90f6-271810f60863.gif" width="300" height="650"> 
+<img src="https://user-images.githubusercontent.com/45090197/126941838-97107b86-d934-4f53-90f6-271810f60863.gif" width="300" height="630"> 
 
 <br>
 
 ### 다크모드 대응
 일반 모드와 다크 모드인 경우에 배경화면과 글자색의 변화를 주어서 다크모드에 대응할 수 있는 기능 <br>
-<img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="300" height="650"> 
+<img src="https://user-images.githubusercontent.com/45090197/126941873-fe1c0369-b2cb-45e9-b48d-efbef0149f53.gif" width="300" height="630"> 
 
 <br>
 
@@ -527,7 +527,7 @@ Model은 Observer pattern의 **Notification과 KVO(Key Value Observation)을 통
 - Massive view controller가 작성됨
 - Model을 제외하고 View와 Controller는 Unit Test를 수행하기 어렵움
 
-[👉🏻 MVC 패턴에 대한 학습 블로그로 가기]()
+[👉🏻 MVC 패턴에 대한 학습 블로그로 가기](https://jryoun1.github.io/design%20pattern/MVCDesignPattern/)
 
 <br>
 
@@ -555,7 +555,7 @@ Property List Key에 `NSLocationWhenInUseUsageDescription`, `NSLocationAlwaysAnd
 
 만약 **foreground에서만 사용자의 위치에 접근하는 경우**에는`NSLocationWhenInUseUsageDescription` 만 작성해주면 된다. 앱이 **background에서도 사용자의 위치에 접근해야하는 경우**에는`NSLocationAlwaysAndWhenInUseUsageDescription` 를 작성해주면 된다.
 
-[👉🏻 CLLocation에 대한 학습 블로그로 가기](https://velog.io/@minni/CCLocation)
+[👉🏻 CLLocation에 대한 학습 블로그로 가기](https://jryoun1.github.io/swift/CoreLocation/)
 
 ##### ⚠️ CLGeocoder
 
@@ -630,7 +630,7 @@ func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URL
 - `error` : 값(에러 발생) or nil(성공)
 - `task.resume()` : suspend 상태의 task를 실행시킴
 
-[👉🏻 URLSession에 대해서 공부한 블로그 가기](https://velog.io/@minni/URLSession-URLSessionConfiguration-URLSessionTask)
+[👉🏻 URLSession에 대해서 공부한 블로그 가기](https://jryoun1.github.io/swift/URLSession/)
 
 <br>
 
@@ -739,7 +739,7 @@ open func dataTask(with request: URLRequest, completionHandler: @escaping (Data?
 
 따라서 `dataTask()` 메소드에서도 서버와의 작업이 끝마친 뒤에 `(Data?, URLResponse?, Error?) -> Void ` 클로저가 실행되는 것이다. <br>
 
-[👉🏻 escaping closure에 대한 학습 블로그 가기]()
+[👉🏻 escaping closure에 대한 학습 블로그 가기](https://jryoun1.github.io/swift/escapingClosure/)
 
 #### Result Type
 
